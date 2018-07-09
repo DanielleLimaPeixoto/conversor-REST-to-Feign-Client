@@ -1,0 +1,7 @@
+Eureka: 8761
+Zuul: 8765
+MsCustomer: 9093
+MsProduct: 9092
+TesteSale: 9097
+MsAuthentication: 9094
+MsNewsletter: 9095

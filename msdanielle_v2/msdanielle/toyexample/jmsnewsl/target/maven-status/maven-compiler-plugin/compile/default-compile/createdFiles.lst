@@ -1,0 +1,11 @@
+org/ufla/dcc/jmsnewsl/MsNewsletterApp.class
+org/ufla/dcc/jmsnewsl/service/MailerService.class
+org/ufla/dcc/jmsnewsl/domain/User.class
+org/ufla/dcc/jmsnewsl/controller/NewsletterController.class
+org/ufla/dcc/jmsnewsl/service/UserServiceImpl.class
+org/ufla/dcc/jmsnewsl/config/MailConfig.class
+org/ufla/dcc/jmsnewsl/repository/UserRepository.class
+org/ufla/dcc/jmsnewsl/service/MailerServiceImpl.class
+org/ufla/dcc/jmsnewsl/config/resources/RESOURCES.class
+org/ufla/dcc/jmsnewsl/config/properties/MAIL_GMAIL.class
+org/ufla/dcc/jmsnewsl/service/UserService.class

@@ -1,0 +1,6 @@
+org\ufla\dcc\jmsauth\controller\AuthenticationController.class
+org\ufla\dcc\jmsauth\service\AuthenticateService.class
+org\ufla\dcc\jmsauth\repository\UserRepository.class
+org\ufla\dcc\jmsauth\domain\User.class
+org\ufla\dcc\jmsauth\MsAuthenticationApp.class
+org\ufla\dcc\jmsauth\service\AuthenticateServiceImpl.class

@@ -1,0 +1,58 @@
+# Microserviço de Autenticação em Java
+diretório: jmsauth
+nome: MsAuthentication
+porta: 9094
+
+
+Desenvolveu-se um microsserviço de autenticação em Java implementando as mesmas funcionalidades do serviço de autenticação atualmente implementado em .Net (C#).
+O domínio deste microsserviço é definido pela entidade User com atributos username e password. Os dados são gerenciados pelo sistema gerenciador de banco de dados (SGBD) H2, um SGBD rápido, mantém os dados em memória e possui código livre.
+Este microsserviço provê dois endpoints REST (Representational State Transfer):
+1. /api/user/save - salvar um novo usuário no banco de dados do microsserviço;
+2. /api/authenticate - autenticar um usuário pelo seu username e senha
+
+
+
+# Microserviço de Boletim de Notícias em Java
+diretório: jmsnewsl
+nome: MsNewsletter
+porta: 9095
+
+Desenvolveu-se um microsserviço de boletim de notícias (Newsletter) em Java implementando as mesmas funcionalidades do serviço de boletim de notícias atualmente implementado em .Net (C#).
+O domínio deste microsserviço é definido pela entidade User com atributos cpf e email. Os dados também são gerenciados pelo SGBD H2.
+Este microsserviço provê dois endpoints REST:
+1. /api/newsletter/subscribe - inscreve um usuário no canal que envia os emails do boletim de notícias para os inscritos.
+2. /api/newsletter/publish - envia os emails do boletim de notícias para todos os usuários inscritos neste canal.
+Para enviar os emails de boletim de notícias foi criado o email 'toyexample72@gmail.com' com a senha 'toyexample1928'. Portanto, o email 'toyexample72@gmail.com' envia os emails do boletim de notícias para os inscritos.
+
+# Aplicação para converter comunicações RestTemplate de um microsserviço para interface FeignClient do projeto Spring Cloud Netflix
+diretório: jmscomm
+
+Em desenvolvimento (quase terminando) uma aplicação Java para converter comunicações realizada de um microsserviço com outro com a classe RestTemplate do Spring para a interface FeignClient do projeto Spring Cloud Netflix.
+Esta aplicação recebe dois parâmetros para execução:
+1. o caminho do diretório de um projeto de microsserviço, onde as comunicações serão convertidas;
+2. o hostname (incluso a porta) utilizado para comunicar com o servidor Eureka que gerencia os microsserviços com que o microsserviço analisado comunica.
+Esta aplicação extrai através de análise estática de código, utilizando Abstract Syntax Tree (AST), todas invocações de métodos para identificar as invocações de métodos por expressões do tipo RestTemplate, então são salvos metadados desta invocação de métodos para realizar a conversão. No entanto, é preciso listar os tipos de invocações de métodos que serão mapeados:
+1. <T> T getForObject(java.lang.String url, java.lang.Class<T> responseType, java.lang.Object... uriVariables); - onde o array uriVariables está vazio, caso contrário não é mapeado.
+2. <T> T postForObject(java.lang.String url, java.lang.Object request, java.lang.Class<T> responseType, java.lang.Object... uriVariables); - onde o array uriVariables está vazio, caso contrário não é mapeado.
+
+Após extrair todas invocações de métodos RestTemplate que poderão ser convertidas, é realizada uma requisição no servidor Eureka para recuperar informações dos microsserviços que estão sendo gerenciados pelo Eureka e as instâncias dos mesmos que estão executando. Para cada instância que está executando recupera seu ip e porta. Com isso, para cada invocação de métodos RestTemplate é identificado qual microsserviço que esta invocação está comunicando, se não for possível identificar é inserido um comentário indicando o motivo pelo qual não será possível converter esta invocação.
+
+Então, para cada microsserviço serão mapeados todos os métodos necessários para converter invocações de métodos RestTemplate, assim as interfaces responsáveis por mapear as comunicações para cada microsserviço é definida e persistida no projeto analisado.
+
+Para exemplificar o mapeamento, segue a seguinte invocação de um método RestTemplate:
+
+Customer customer = restTemplate.getForObject("http://localhost:9093/customer/getCustomerCpf/" + cpf + "?teste=" + teste, Customer.class);
+
+é mapeado da seguinte forma, com o hostname: 'localhost:9093' é identificado por meio do Eureka que o microsserviço que está executando neste hostname é o 'MsProduct', é identificada a URL '/customer/getCustomerCpf/', é identificada a variável de caminho 'cpf', e é identificado o parâmetro de requisição 'teste', por fim a interface converte essa comunicação é a interface a seguir:
+
+@FeignClient(value="MsProduct")
+public interface MsProductComm {
+	@GetMapping("/customer/getCustomerCpf/{cpf}")
+	public Customer getCustomerCpf(@PathVariable("cpf") String cpf, @RequestParam("teste"), teste);
+}
+
+por fim o código original é convertido para:
+
+Customer customer = msProductComm.getCustomerCpf(cpf, teste);
+
+Por fim, para cada entidade de código fonte, que terá invocações de métodos RestTemplate convertidos, será inserida todas importações e atributos de interfaces de comunicações com que essa entidade depende, e finalmente converte as invocações de métodos RestTemplate para invocação do método que realiza esta comunicação. É realizado um backup da entidade original com o sufixo '.bak'.

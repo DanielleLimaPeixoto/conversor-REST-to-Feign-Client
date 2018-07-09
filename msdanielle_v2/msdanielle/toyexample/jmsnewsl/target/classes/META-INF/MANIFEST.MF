@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: Java Microservice Newsletter
+Implementation-Version: 1.0
+Built-By: _DaniLima
+Implementation-Vendor-Id: org.ufla.dcc
+Build-Jdk: 1.8.0_161
+Implementation-URL: http://projects.spring.io/spring-boot/jmsnewsl/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+

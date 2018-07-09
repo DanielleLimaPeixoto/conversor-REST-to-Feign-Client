@@ -1,0 +1,11 @@
+/home/carlos/workspaces/microservices/msdanielle/toyexample/jmsnewsl/src/main/java/org/ufla/dcc/jmsnewsl/service/MailerServiceImpl.java
+/home/carlos/workspaces/microservices/msdanielle/toyexample/jmsnewsl/src/main/java/org/ufla/dcc/jmsnewsl/MsNewsletterApp.java
+/home/carlos/workspaces/microservices/msdanielle/toyexample/jmsnewsl/src/main/java/org/ufla/dcc/jmsnewsl/config/properties/MAIL_GMAIL.java
+/home/carlos/workspaces/microservices/msdanielle/toyexample/jmsnewsl/src/main/java/org/ufla/dcc/jmsnewsl/service/UserServiceImpl.java
+/home/carlos/workspaces/microservices/msdanielle/toyexample/jmsnewsl/src/main/java/org/ufla/dcc/jmsnewsl/service/UserService.java
+/home/carlos/workspaces/microservices/msdanielle/toyexample/jmsnewsl/src/main/java/org/ufla/dcc/jmsnewsl/config/MailConfig.java
+/home/carlos/workspaces/microservices/msdanielle/toyexample/jmsnewsl/src/main/java/org/ufla/dcc/jmsnewsl/domain/User.java
+/home/carlos/workspaces/microservices/msdanielle/toyexample/jmsnewsl/src/main/java/org/ufla/dcc/jmsnewsl/service/MailerService.java
+/home/carlos/workspaces/microservices/msdanielle/toyexample/jmsnewsl/src/main/java/org/ufla/dcc/jmsnewsl/repository/UserRepository.java
+/home/carlos/workspaces/microservices/msdanielle/toyexample/jmsnewsl/src/main/java/org/ufla/dcc/jmsnewsl/config/resources/RESOURCES.java
+/home/carlos/workspaces/microservices/msdanielle/toyexample/jmsnewsl/src/main/java/org/ufla/dcc/jmsnewsl/controller/NewsletterController.java
